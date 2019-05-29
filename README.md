@@ -18,3 +18,13 @@ Simple, right? Now let's get into the details...
 ``` javascript
 // Add information on how to use the posts repo
 ```
+
+# Development
+
+To run unit tests, you will need:
+
+- A simple HTTP server
+
+## Unit tests
+
+Run your favorite HTTP server (I suggest `python -m http.server 8000` or `ruby -run -e httpd . -p 8000` though) in the root folder of this repository and access the `test.html`. It will run the unit tests for this project using [Mocha and Chai](https://mochajs.org/).
