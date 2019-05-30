@@ -1,9 +1,9 @@
-function get(url, callback) {
+function makeInternalGetRequest(url, callback) {
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
-            callback(JSON.parse(request.responseText));
+            callback(request.responseText);
         } else {
             callback({error: "Bad request"});
         }
@@ -18,10 +18,16 @@ function GithubBlog(postsRepo) {
     this.src = postsRepo;
 
     this.loadIndex = function(callback) {
-        get(`https://www.gitcdn.xyz/repo/${this.src}/master/index.json`, callback);
+        makeInternalGetRequest(`https://www.gitcdn.xyz/repo/${this.src}/master/index.json`, function(response) {
+            if (response.error) {
+                callback(response);
+            } else {
+                callback(JSON.parse(response));
+            }
+        });
     }
 
-    this.getPost = function(postId) {
-        return null;
+    this.loadPost = function(postLink, callback) {
+        makeInternalGetRequest(`https://www.gitcdn.xyz/repo/${this.src}/master${postLink}`, callback);
     }
 }

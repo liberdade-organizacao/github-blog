@@ -10,7 +10,7 @@ describe('Assumptions', function() {
 });
 
 describe('Github Blog', function() {
-  describe('index() function', function() {
+  describe('loadIndex() function', function() {
     it('should load the index from an existing blog', function(done) {
       var blog = new GithubBlog('liberdade-organizacao/posts');
       blog.loadIndex(function(index) {
@@ -30,6 +30,25 @@ describe('Github Blog', function() {
       var notBlog = new GithubBlog('liberdade-organizacao/nothing-really');
       notBlog.loadIndex(function(index) {
           chai.assert.exists(index.error);
+          done();
+      });
+    });
+  });
+
+  describe('loadPost() function', function() {
+    it('should load the index from an existing blog', function(done) {
+      var blog = new GithubBlog('liberdade-organizacao/posts');
+      blog.loadPost('/comecar.md', function(post) {
+          chai.assert.notExists(post.error);
+          console.log(post);
+          done();
+      });
+    });
+
+    it('should not load posts from an invalid blog', function(done) {
+      var notBlog = new GithubBlog('liberdade-organizacao/nothing-really');
+      notBlog.loadPost('/nope.html', function(post) {
+          chai.assert.exists(post.error);
           done();
       });
     });
