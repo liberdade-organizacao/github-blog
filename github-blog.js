@@ -18,7 +18,7 @@ function GithubBlog(postsRepo) {
     this.src = postsRepo;
 
     this.loadIndex = function(callback) {
-        makeInternalGetRequest(`https://www.gitcdn.xyz/repo/${this.src}/master/index.json`, function(response) {
+        makeInternalGetRequest(`https://raw.githubusercontent.com/${this.src}/master/index.json`, function(response) {
             if (response.error) {
                 callback(response);
             } else {
@@ -28,6 +28,6 @@ function GithubBlog(postsRepo) {
     }
 
     this.loadPost = function(postLink, callback) {
-        makeInternalGetRequest(`https://www.gitcdn.xyz/repo/${this.src}/master${postLink}`, callback);
+        makeInternalGetRequest(`https://raw.githubusercontent.com/${this.src}/master${postLink}`, callback);
     }
 }
