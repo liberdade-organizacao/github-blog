@@ -48,3 +48,9 @@ To run unit tests, you will need:
 ## Unit tests
 
 Run your favorite HTTP server (I suggest `python -m http.server 8000` or `ruby -run -e httpd . -p 8000` though) in the root folder of this repository and access the `test.html`. It will run the unit tests for this project using [Mocha](https://mochajs.org/) and [Chai](https://www.chaijs.com/).
+
+
+# GitHub Blog in the wild
+
+- [Cris Jr's personal page](www.crisjr.eng.br)
+- [Liberdade's own site](https://liberdade-organizacao.github.io/)
