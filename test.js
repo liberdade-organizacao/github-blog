@@ -38,9 +38,8 @@ describe('Github Blog', function() {
   describe('loadPost() function', function() {
     it('should load the index from an existing blog', function(done) {
       var blog = new GithubBlog('liberdade-organizacao/posts');
-      blog.loadPost('comecar.md', function(post) {
+      blog.loadPost('maker-101.md', function(post) {
           chai.assert.notExists(post.error);
-          console.log(post);
           done();
       });
     });
@@ -49,6 +48,35 @@ describe('Github Blog', function() {
       var notBlog = new GithubBlog('liberdade-organizacao/nothing-really');
       notBlog.loadPost('nope.html', function(post) {
           chai.assert.exists(post.error);
+          done();
+      });
+    });
+  });
+});
+
+describe("Gitlab Blog", function() {
+  describe("loadIndex() function", function() {
+    it("should load index from Gitlab blog", function(done) {
+      var blog = new GitlabBlog('crisjr/notes');
+      blog.loadIndex(function(index) {
+          chai.assert.notExists(index.error);
+          chai.assert.isAbove(index.length, 3);
+          for (var i = 0; i < index.length; i++) {
+              var post = index[i];
+              chai.assert.exists(post.path);
+              chai.assert.exists(post.title);
+              chai.assert.exists(post.description);
+          }
+          done();
+      });
+    });
+  });
+
+  describe("loadPost() function", function() {
+    it("should load posts from Gitlab blog", function(done) {
+      var blog = new GitlabBlog('crisjr/notes');
+      blog.loadPost('lmc.html', function(post) {
+          chai.assert.notExists(post.error);
           done();
       });
     });
