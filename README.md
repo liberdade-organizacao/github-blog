@@ -11,7 +11,7 @@ Simple, right? Now let's get into the details...
 
 Your posts repository must contain an `index.blog.json` file organized as a list of JSON objects containing at least the following fields:
 
-- `link`: indicates what is the path to the file containing the post data
+- `path`: indicates what is the path to the file containing the post data
 - `title`: contains the blog post title
 - `description`: shortly describes what your post is about
 
@@ -29,7 +29,7 @@ To use the `github-blog` library, use [GitCDN](https://www.gitcdn.xyz) to enable
     var postLink = '';
     var blog = new GithubBlog('liberdade-organizacao/posts');
     blog.loadIndex(function(index) {
-        postLink = index[0].link;
+        postLink = index[0].path;
     });
 
     blog.loadPost(postLink, function(post) {

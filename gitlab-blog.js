@@ -5,7 +5,9 @@ class GitlabBlog {
 
   loadIndex(callback) {
     var request = new XMLHttpRequest();
-    request.open('GET', `${this.repo}/index.blog.json`, true);
+    var url = `${this.repo}/index.blog.json`;
+    console.log(url);
+    request.open('GET', url, true);
     request.onload = function() {
       return callback(JSON.parse(this.response));
     };

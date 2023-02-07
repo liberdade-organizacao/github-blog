@@ -57,7 +57,7 @@ describe('Github Blog', function() {
 describe("Gitlab Blog", function() {
   describe("loadIndex() function", function() {
     it("should load index from Gitlab blog", function(done) {
-      var blog = new GitlabBlog('crisjr/notes');
+      var blog = new GitlabBlog('liberdade-controle-automacao/posts');
       blog.loadIndex(function(index) {
           chai.assert.notExists(index.error);
           chai.assert.isAbove(index.length, 3);
@@ -74,8 +74,8 @@ describe("Gitlab Blog", function() {
 
   describe("loadPost() function", function() {
     it("should load posts from Gitlab blog", function(done) {
-      var blog = new GitlabBlog('crisjr/notes');
-      blog.loadPost('lmc.html', function(post) {
+      var blog = new GitlabBlog('liberdade-controle-automacao/posts');
+      blog.loadPost('linux_terminal_programs.md', function(post) {
           chai.assert.notExists(post.error);
           done();
       });
